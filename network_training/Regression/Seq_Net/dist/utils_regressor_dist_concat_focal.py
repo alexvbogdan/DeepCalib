@@ -26,6 +26,20 @@ class CustomModelCheckpoint(keras.callbacks.Callback):
     def __init__(self, model_for_saving, filepath, monitor='val_loss', verbose=0,
                  save_best_only=False, save_weights_only=False,
                  mode='auto', period=1):
+        """
+        Initialize the weights.
+
+        Args:
+            self: (todo): write your description
+            model_for_saving: (todo): write your description
+            filepath: (str): write your description
+            monitor: (todo): write your description
+            verbose: (bool): write your description
+            save_best_only: (bool): write your description
+            save_weights_only: (bool): write your description
+            mode: (todo): write your description
+            period: (int): write your description
+        """
         super(CustomModelCheckpoint, self).__init__()
         self.monitor = monitor
         self.verbose = verbose
@@ -57,6 +71,14 @@ class CustomModelCheckpoint(keras.callbacks.Callback):
                 self.best = np.Inf
 
     def on_epoch_end(self, epoch, logs=None):
+        """
+        Save the model weights to disk.
+
+        Args:
+            self: (todo): write your description
+            epoch: (todo): write your description
+            logs: (dict): write your description
+        """
         logs = logs or {}
         self.epochs_since_last_save += 1
         if self.epochs_since_last_save >= self.period:
@@ -112,6 +134,13 @@ def angle_error(y_true, y_pred):
     return K.mean(K.cast(K.abs(diff), K.floatx()))
 
 def slice_image(image, slice_dict):
+    """
+    Return a slice
+
+    Args:
+        image: (array): write your description
+        slice_dict: (dict): write your description
+    """
 
     if slice_dict == 0:
         sliced_image = image
@@ -128,6 +157,12 @@ def slice_image(image, slice_dict):
 
 
 def add_noise(image):
+    """
+    Add noise to image.
+
+    Args:
+        image: (array): write your description
+    """
     image = np.clip(image,0,255)
     if bool(random.getrandbits(1)):
         total = IMAGE_WIDTH * IMAGE_HEIGHT * 3
@@ -147,6 +182,12 @@ def add_noise(image):
     return to_int_noise
 
 def add_gaussian_noise(image):
+    """
+    Add noise to image.
+
+    Args:
+        image: (array): write your description
+    """
     image = np.clip(image, 0, 255)
     row,col,ch= image.shape
     mean = 0
@@ -159,6 +200,12 @@ def add_gaussian_noise(image):
     return to_int_noisy
 
 def add_contrast_brightness(image):
+    """
+    Add an image to the image.
+
+    Args:
+        image: (array): write your description
+    """
     image = np.clip(image,0,255)
     contrast = np.random.uniform(0.9,1.1)
     brightness = np.random.randint(-5,5)
@@ -167,12 +214,24 @@ def add_contrast_brightness(image):
     return to_int_adjusted
 
 def blur_randomly(image):
+    """
+    Blurururly random variates image.
+
+    Args:
+        image: (array): write your description
+    """
     image = np.clip(image, 0, 255)
     std = np.random.uniform(0, 1.5)
     blurred = cv2.GaussianBlur(image, (5,5), std)
     return blurred
 
 def erase_randomly(image):
+    """
+    Erase an image.
+
+    Args:
+        image: (todo): write your description
+    """
     area = random.uniform(0.1, 0.6)
     prob = random.getrandbits(1)
     if prob:
@@ -225,6 +284,11 @@ def rotate_image(image, rotation_number):
     return rotated_image
 
 def give_random_angle_phi():
+    """
+    Generate a random angle between two random integers.
+
+    Args:
+    """
     A = np.arange(1,179)
     return random.choice(A)
 
@@ -249,6 +313,25 @@ class RotNetDataGenerator(object):
     def __init__(self, input_shape=None, color_mode='rgb', batch_size=64, one_hot=True,
                 preprocess_func=None, rotate=True, sliced=True, flip=True, crop_center=False, crop_largest_rect=False, contrast_and_brightness=True,
                 shuffle=False, seed=None):
+        """
+        Initialize the image.
+
+        Args:
+            self: (todo): write your description
+            input_shape: (dict): write your description
+            color_mode: (str): write your description
+            batch_size: (int): write your description
+            one_hot: (todo): write your description
+            preprocess_func: (todo): write your description
+            rotate: (int): write your description
+            sliced: (int): write your description
+            flip: (str): write your description
+            crop_center: (str): write your description
+            crop_largest_rect: (str): write your description
+            contrast_and_brightness: (todo): write your description
+            shuffle: (bool): write your description
+            seed: (int): write your description
+        """
 
         self.input_shape = input_shape
         self.color_mode = color_mode
@@ -265,6 +348,15 @@ class RotNetDataGenerator(object):
 
     #@threadsafe_generator
     def generate(self, input,labels,num_classes_focal):
+        """
+        Generate images.
+
+        Args:
+            self: (todo): write your description
+            input: (str): write your description
+            labels: (str): write your description
+            num_classes_focal: (int): write your description
+        """
         # Infinite loop
         while 1:
             # Generate order of exploration of dataset
@@ -291,6 +383,15 @@ class RotNetDataGenerator(object):
 
 
     def __data_generation(self, input,labels,num_classes_focal):
+        """
+        Data generation.
+
+        Args:
+            self: (todo): write your description
+            input: (str): write your description
+            labels: (str): write your description
+            num_classes_focal: (int): write your description
+        """
         # create array to hold the images
         batch_x = np.zeros((self.batch_size,) + self.input_shape, dtype='float32')
         # create array to hold the labels

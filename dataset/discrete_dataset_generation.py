@@ -13,9 +13,23 @@ np.random.seed(1)
 
 
 def deg2rad(deg):
+    """
+    Convert from degrees to degrees.
+
+    Args:
+        deg: (todo): write your description
+    """
     return deg*m.pi/180
 
 def getRotationMat(roll, pitch, yaw):
+    """
+    Calculate the angle of the angle
+
+    Args:
+        roll: (str): write your description
+        pitch: (todo): write your description
+        yaw: (str): write your description
+    """
 
     rx = np.array([1., 0., 0., 0., np.cos(deg2rad(roll)), -np.sin(deg2rad(roll)), 0., np.sin(deg2rad(roll)), np.cos(deg2rad(roll))]).reshape((3, 3))
     ry = np.array([np.cos(deg2rad(pitch)), 0., np.sin(deg2rad(pitch)), 0., 1., 0., -np.sin(deg2rad(pitch)), 0., np.cos(deg2rad(pitch))]).reshape((3, 3))
@@ -24,12 +38,29 @@ def getRotationMat(roll, pitch, yaw):
     return np.matmul(rz, np.matmul(ry, rx))
 
 def minfocal( u0,v0,xi,xref=1,yref=1):
+    """
+    Calculate of a vector.
+
+    Args:
+        u0: (int): write your description
+        v0: (int): write your description
+        xi: (int): write your description
+        xref: (str): write your description
+        yref: (str): write your description
+    """
 
     fmin = np.sqrt(-(1-xi*xi)*((xref-u0)*(xref-u0) + (yref-v0)*(yref-v0)))
 
     return fmin * 1.0001
 
 def diskradius(xi, f):
+    """
+    Return a function.
+
+    Args:
+        xi: (array): write your description
+        f: (todo): write your description
+    """
 
     return np.sqrt(-(f*f)/(1-xi*xi))
 

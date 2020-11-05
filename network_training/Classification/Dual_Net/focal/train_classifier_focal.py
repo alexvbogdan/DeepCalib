@@ -44,6 +44,12 @@ IMAGE_FILE_PATH_DISTORTED = ""
 classes_focal = list(np.arange(40, 501, 10))# focal
 
 def get_paths(IMAGE_FILE_PATH_DISTORTED):
+    """
+    Generate paths for training.
+
+    Args:
+        IMAGE_FILE_PATH_DISTORTED: (str): write your description
+    """
     paths_train = glob.glob(IMAGE_FILE_PATH_DISTORTED+'train/' + "*.jpg")
     paths_train.sort()
     parameters = []
