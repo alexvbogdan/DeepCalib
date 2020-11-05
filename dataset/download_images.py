@@ -4,6 +4,12 @@ import os
 dest_dir = "./all_images_new/"
 
 def down_from_dir(dirname):
+    """
+    Downsample the given directory.
+
+    Args:
+        dirname: (str): write your description
+    """
     file_names = os.listdir(dirname)
 
     for file_name in file_names:
@@ -34,6 +40,12 @@ def down_from_dir(dirname):
 
 
 def down_from_txt(textname):
+    """
+    Downsample the text file
+
+    Args:
+        textname: (str): write your description
+    """
     category = open(textname, 'r')
 
     for index, image_url in enumerate(category):

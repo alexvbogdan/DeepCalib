@@ -43,6 +43,12 @@ classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 
 def get_paths(IMAGE_FILE_PATH_DISTORTED):
+    """
+    Get paths for paths.
+
+    Args:
+        IMAGE_FILE_PATH_DISTORTED: (str): write your description
+    """
     paths_train = glob.glob(IMAGE_FILE_PATH_DISTORTED + "*.jpg")
     paths_train.sort()
     parameters = []

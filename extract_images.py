@@ -11,6 +11,12 @@ filename = ""
  
 
 def video_to_frames(video_filename):
+    """
+    Convert video to video
+
+    Args:
+        video_filename: (str): write your description
+    """
     source_video = cv2.VideoCapture(video_filename)
     n_frames = source_video.get(cv2.CAP_PROP_FRAME_COUNT)
     i = 0

@@ -30,6 +30,12 @@ classes_focal = list(np.arange(focal_start, focal_end+1, 10))
 classes_distortion = list(np.arange(0, 41, 1) / 40.)
 
 def get_paths(IMAGE_FILE_PATH_DISTORTED):
+    """
+    Return a list of paths that are available paths.
+
+    Args:
+        IMAGE_FILE_PATH_DISTORTED: (str): write your description
+    """
 
     paths_test = glob.glob(IMAGE_FILE_PATH_DISTORTED + 'test/' + "*.jpg")
     paths_test.sort()

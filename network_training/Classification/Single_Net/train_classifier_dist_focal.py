@@ -50,6 +50,12 @@ classes_distortion = list(np.arange(0, 120 + 1, 2) / 100.)
 
 
 def get_paths(IMAGE_FILE_PATH_DISTORTED):
+    """
+    Get paths for paths.
+
+    Args:
+        IMAGE_FILE_PATH_DISTORTED: (str): write your description
+    """
     paths_train = glob.glob(IMAGE_FILE_PATH_DISTORTED + 'train/' + "*.jpg")
     paths_train.sort()
     parameters = []
@@ -99,6 +105,12 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
 
 
 def step_decay(epoch):
+    """
+    Perform a single epoch.
+
+    Args:
+        epoch: (int): write your description
+    """
    initial_lrate = 0.001
    drop = 0.1
    epochs_drop = 2.
