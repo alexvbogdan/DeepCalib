@@ -57,7 +57,7 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
     labels_focal_train = []
     for path in paths_train:
         curr_parameter = float((path.split('_f_'))[1].split('_d_')[0])
-        labels_focal_train.append((curr_parameter - focal_start*1.) / (focal_end*1.+1. - focal_start*1.)) #normalize bewteen 0 and 1
+        labels_focal_train.append((curr_parameter - focal_start*1.) / (focal_end*1. - focal_start*1.)) #normalize bewteen 0 and 1
     labels_distortion_train = []
     for path in paths_train:
         curr_parameter = float((path.split('_d_'))[1].split('.jpg')[0])
