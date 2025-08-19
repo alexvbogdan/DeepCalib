@@ -1,0 +1,2 @@
+/DeepCalib/undistortion/example/wide-angle-lenses-750px.jpg	prediction_focal	500	prediction_dist	1.2
+/DeepCalib/undistortion/example/wide-angle-lenses-750px2.jpg	prediction_focal	250	prediction_dist	1.2
